@@ -1,0 +1,17 @@
+#crawl_shopee_test_toast{
+    position: fixed;
+    display: none;
+    left: 50%;
+    top: 10%;
+    z-index: 9999;
+    margin: auto;
+    padding: 16px 8px;
+    transform: translate(-50%,-50%);
+    min-width: 120px;
+    min-height: 25px;
+    line-height: 25px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+}

@@ -1,0 +1,39 @@
+{
+    "name": "投放种子",
+    "version": "1.0",
+    "manifest_version": 3,
+    "description": "投放种子孙瑶测试",
+    "icons": {
+        "128": "img/icon_halloween_38x38.png",
+        "16": "img/icon_halloween_38x38.png",
+        "48": "img/icon_halloween_38x38.png"
+     },
+    "background": {
+        "service_worker": "background.js"
+      },
+    "permissions":
+    [
+        "contextMenus",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://yapi.test.shopee.io/",
+        "https://crawler-admin.i.sv.shopee.co.id/",
+        "https://crawler-admin.i.sv.test.shopee.co.id/",
+        "https://crawler-admin.i.sv.uat.shopee.co.id/"
+    ],    
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*/*",
+                "http://*/*"
+            ],
+            "js": [
+                "content_script.js"
+            ],
+            "css":["toast.css"],
+            "run_at": "document_idle"
+            
+        }
+    ]
+}
