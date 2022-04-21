@@ -8,7 +8,7 @@ chrome.contextMenus.create({
     contexts: ["all"],
 })
 chrome.contextMenus.onClicked.addListener(parameter => {
-    const { srcUrl, pageUrl } = parameter
+    const {  pageUrl,linkUrl, mediaType } = parameter
     console.log('parameter', parameter)
     getCurrentTabId().then((tabId) => {
         console.log('tabId', tabId)
@@ -16,11 +16,9 @@ chrome.contextMenus.onClicked.addListener(parameter => {
             chrome.tabs.sendMessage(tabId, { from: 'ins' }, (srcUrl) => {
                 srcUrl && debounce(fetchUrl(url, [{ video_url: srcUrl, location_url: pageUrl }], tabId), 1000, true)
             });
-        } else if (parameter.mediaType && parameter.mediaType === 'video' && srcUrl) {
-            debounce(fetchUrl(url, [{ video_url: srcUrl, location_url: pageUrl }], tabId), 1000, true)
-        } else {
-            handleWrongTips(tabId)
-            return
+        }
+        if (pageUrl.includes('tiktok') && (mediaType === "video")) {
+            fetchUrl(url, [{ video_url: linkUrl || pageUrl, location_url: pageUrl }], tabId)
         }
     })
 })
